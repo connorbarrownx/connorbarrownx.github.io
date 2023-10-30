@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Is Bread a Bane?</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
@@ -24,22 +26,26 @@
         </div>
     </div>
 
-   <script type="text/javascript">
-		var requestURL = 'https://connorbarrownx.github.io/facts0.json';
-		var request = new XMLHttpRequest();
-		request.open('GET', requestURL);
-		request.responseType = 'json';
-		request.send();
+       <script>
+        var factsContainer = $("#facts-container");
+        var jsonData; // To store JSON data
 
-		request.onload = function() {
-			var data = request.response;
+        // Load the JSON file
+        $.getJSON("facts0.json", function (data) {
+            jsonData = data;
+            displayFacts(0); // Display the first set of facts
+        });
 
-			var html = "";
-			for (var i = 0; i < data.length; i++) {
-				html += "<p>" + (i+1) + ". \"" + data[i].Fact + "\"<br>" + data[i].Description + "</p>";
-			}
-			document.write(html);
-		}
+        // Function to display facts starting from a given index
+        function displayFacts(startIndex) {
+            factsContainer.empty(); // Clear the container
+
+            for (var i = startIndex; i < Math.min(startIndex + 15, jsonData.length); i++) {
+                var fact = jsonData[i];
+                var factElement = $("<p>").html((i + 1) + ". \"" + fact.Fact + "\"<br>" + fact.Description);
+                factsContainer.append(factElement);
+            }
+        }
     </script>
 
     <footer>
