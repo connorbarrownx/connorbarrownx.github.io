@@ -24,35 +24,22 @@
         </div>
     </div>
 
-    <script>
-        var factsContainer = document.getElementById("facts-container");
+   <script type="text/javascript">
+		var requestURL = 'https://example.com/facts.json';
+		var request = new XMLHttpRequest();
+		request.open('GET', requestURL);
+		request.responseType = 'json';
+		request.send();
 
-        // Function to load the JSON file
-        function loadJSON(callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.overrideMimeType("application/json");
-            xhr.open('GET', 'facts0.json', true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == "200") {
-                    callback(xhr.responseText);
-                }
-            };
-            xhr.send(null);
-        }
+		request.onload = function() {
+			var data = request.response;
 
-        // Function to display the facts
-        function displayFacts(data) {
-            var facts = JSON.parse(data);
-            for (var i = 0; i < facts.length; i++) {
-                var fact = facts[i];
-                var factElement = document.createElement("p");
-                factElement.innerHTML = (i + 1) + ". " + fact.Fact + "<br>" + fact.Description;
-                factsContainer.appendChild(factElement);
-            }
-        }
-
-        // Load and display the JSON data
-        loadJSON(displayFacts);
+			var html = "";
+			for (var i = 0; i < data.length; i++) {
+				html += "<p>" + (i+1) + ". \"" + data[i].Fact + "\"<br>" + data[i].Description + "</p>";
+			}
+			document.write(html);
+		}
     </script>
 
     <footer>
