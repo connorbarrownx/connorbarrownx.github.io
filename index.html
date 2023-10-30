@@ -1,4 +1,3 @@
-index_v21
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,61 +18,45 @@ index_v21
         <h2>Unbelievable Reasons Why Bread Might Be "Bad" For You</h2>
 
         <img src="bread_image.jpg" alt="Bread Image" class="bread-image">
-        
-        <p class="reasons">You see this thing right here? We've been having it for centuries, but we've never realized until now that it's bad for us. In the world of culinary folklore, bread has garnered some rather unusual and whimsical reputations. While we all know that bread is a beloved staple, let's explore these playful and fictional tales about its supposed "dangers" with a touch of humor.</p>
 
-        <div id="content">
+        <div id="facts-container">
             <!-- Facts will be displayed here -->
         </div>
-
-        <div id="navigation-panel">
-            <button id="prev-button">Previous</button>
-            <button id="next-button">Next</button>
-        </div>
     </div>
+
+    <script>
+        var factsContainer = document.getElementById("facts-container");
+
+        // Function to load the JSON file
+        function loadJSON(callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.overrideMimeType("application/json");
+            xhr.open('GET', 'facts.json', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == "200") {
+                    callback(xhr.responseText);
+                }
+            };
+            xhr.send(null);
+        }
+
+        // Function to display the facts
+        function displayFacts(data) {
+            var facts = JSON.parse(data);
+            for (var i = 0; i < facts.length; i++) {
+                var fact = facts[i];
+                var factElement = document.createElement("p");
+                factElement.innerHTML = (i + 1) + ". " + fact.Fact + "<br>" + fact.Description;
+                factsContainer.appendChild(factElement);
+            }
+        }
+
+        // Load and display the JSON data
+        loadJSON(displayFacts);
+    </script>
 
     <footer>
         <p>&copy; 2023 Is Bread a Bane? All rights reserved.</p>
     </footer>
-
-<div class="container">
-    <h2>Unbelievable Reasons Why Bread Might Be "Bad" For You</h2>
-    <div id="content"></div>
-    <div id="navigation-panel">
-        <button id="prev-button">Previous</button>
-        <button id="next-button">Next</button>
-    </div>
-</div>
-
-</script>
-// Function to load facts from an external JSON file
-function loadFactsFromJSON() {
-    var factContainer = document.getElementById("fact-container");
-
-    // Fetch the JSON file
-    fetch('facts.json')
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            // Iterate through the facts and display them
-            data.forEach(function (fact, index) {
-                var factElement = document.createElement("div");
-                factElement.innerHTML = "<p><strong>Fact " + (index + 1) + ": " + fact.Fact + "</strong><br>" + fact.Description + "</p>";
-
-                factContainer.appendChild(factElement);
-            });
-        })
-        .catch(function (error) {
-            console.error('Error loading facts from JSON:', error);
-        });
-}
-
-</script>
-
-
-// Call the function to load facts from JSON
-loadFactsFromJSON();
-
 </body>
 </html>
