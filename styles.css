@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9e3c0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffbd69;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #814b27;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.reasons {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+button.accordion {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    width: 100%;
+}
+
+button.accordion:hover {
+    color: #ffbd69;
+}
+
+.panel {
+    display: none;
+    padding: 10px 0;
+}
+
+button.active, button.accordion:hover {
+    background-color: #ffbd69;
+    color: #814b27;
+}
+
+a {
+    color: #814b27;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #ffbd69;
+}
+
+.bread-image {
+    width: 80%; /* Reduces the image size to 80% of its original size */
+}
+
+/* Add this rule to your CSS file to center the image */
+.container {
+    text-align: center;
+}
+
+/* Add this rule to your CSS file to style the image */
+.bread-image {
+    width: 80%; /* Reduces the image size to 80% of its original size */
+}
+
+/* Center the copyright text */
+footer {
+    text-align: center;
+}
+
+/* Navigation panel styling */
+.navigation-panel {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    color: #814b27; /* Text color matching #814b27 */
+    padding: 10px;
+}
+
+.navigation-panel a {
+    text-decoration: none; /* Removes underline from links */
+    color: #814b27; /* Text color matching #814b27 */
+    margin: 0 10px; /* Adjust spacing between elements */
+    font-family: 'Arial', sans-serif; /* Font choice */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold font */
+}
+
+.navigation-panel a:hover {
+    text-decoration: underline; /* Underline links on hover */
+}
+
+
+
+
+
