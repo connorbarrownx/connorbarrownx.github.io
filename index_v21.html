@@ -1,0 +1,79 @@
+index_v21
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Is Bread a Bane?</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Is Bread a Bane?</h1>
+    </header>
+    <div class="container">
+        <h2>Introduction</h2>
+        <p>
+            Welcome to "Is Bread a Bane?" – a comprehensive exploration of the world of bread, combining facts and whimsical tales. In this report, we delve into the cultural significance, nutritional aspects, and playful myths surrounding this beloved staple. Join us on this journey through the world of bread.
+        </p>
+
+        <h2>Unbelievable Reasons Why Bread Might Be "Bad" For You</h2>
+
+        <img src="bread_image.jpg" alt="Bread Image" class="bread-image">
+        
+        <p class="reasons">You see this thing right here? We've been having it for centuries, but we've never realized until now that it's bad for us. In the world of culinary folklore, bread has garnered some rather unusual and whimsical reputations. While we all know that bread is a beloved staple, let's explore these playful and fictional tales about its supposed "dangers" with a touch of humor.</p>
+
+        <div id="content">
+            <!-- Facts will be displayed here -->
+        </div>
+
+        <div id="navigation-panel">
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Is Bread a Bane? All rights reserved.</p>
+    </footer>
+
+<div class="container">
+    <h2>Unbelievable Reasons Why Bread Might Be "Bad" For You</h2>
+    <div id="content"></div>
+    <div id="navigation-panel">
+        <button id="prev-button">Previous</button>
+        <button id="next-button">Next</button>
+    </div>
+</div>
+
+</script>
+// Function to load facts from an external JSON file
+function loadFactsFromJSON() {
+    var factContainer = document.getElementById("fact-container");
+
+    // Fetch the JSON file
+    fetch('facts.json')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            // Iterate through the facts and display them
+            data.forEach(function (fact, index) {
+                var factElement = document.createElement("div");
+                factElement.innerHTML = "<p><strong>Fact " + (index + 1) + ": " + fact.Fact + "</strong><br>" + fact.Description + "</p>";
+
+                factContainer.appendChild(factElement);
+            });
+        })
+        .catch(function (error) {
+            console.error('Error loading facts from JSON:', error);
+        });
+}
+
+</script>
+
+
+// Call the function to load facts from JSON
+loadFactsFromJSON();
+
+</body>
+</html>
