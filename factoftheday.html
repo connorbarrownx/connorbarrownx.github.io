@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fact of the Day</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fact of the Day</h1>
+    </header>
+
+    <div class="container">
+        <div id="fact-container">
+            <!-- Fact of the day will be displayed here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Load and display a random added fact
+            loadRandomAddedFact();
+        });
+
+        function loadRandomAddedFact() {
+            // Load the JSON file
+            $.getJSON('facts.json', function(data) {
+                // Filter added facts
+                var addedFacts = data.filter(function(fact) {
+                    return fact.Added === true;
+                });
+
+                // Get a random added fact
+                var randomIndex = Math.floor(Math.random() * addedFacts.length);
+                var randomFact = addedFacts[randomIndex];
+
+                // Display the random fact
+                displayFact(randomFact);
+            });
+        }
+
+        function displayFact(fact) {
+            var factContainer = $('#fact-container');
+            var factElement = $('<p>').html(
+                '<strong>' + fact.Fact + '</strong><br>' +
+                fact.Description
+            );
+            factContainer.append(factElement);
+        }
+    </script>
+</body>
+</html>
