@@ -19,13 +19,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        function displayFact(fact) {
-            // Implement the logic to display the fact in the fact-container
-            // You might want to create HTML elements dynamically and append them to #fact-container
-        }
-
         function loadRandomAddedFact() {
             $.getJSON('Facts0V2.json', function(data) {
+                console.log('JSON Data Received:', data);
+
                 var addedFacts = data.filter(function(fact) {
                     return fact.Added === true;
                 });
@@ -34,10 +31,21 @@
                 var randomFact = addedFacts[randomIndex];
 
                 displayFact(randomFact);
+            })
+            .fail(function(jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log('JSON Request Failed:', err);
             });
         }
 
-        // Call the function to load a random added fact when the page loads
+        function displayFact(fact) {
+            // Display the fact in the fact-container
+            // Modify this part based on your needs
+            var factContainer = $('#fact-container');
+            factContainer.html('<p>' + fact.Fact + '<br>' + fact.Description + '</p>');
+        }
+
+        // Load and display the random added fact
         loadRandomAddedFact();
     </script>
 </body>
