@@ -19,36 +19,19 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Load and display a random added fact
-            loadRandomAddedFact();
+function loadRandomAddedFact() {
+    $.getJSON('factstest.json', function(data) {
+        var addedFacts = data.filter(function(fact) {
+            return fact.Added === true;
         });
 
-        function loadRandomAddedFact() {
-            // Load the JSON file
-            $.getJSON('facts.json', function(data) {
-                // Filter added facts
-                var addedFacts = data.filter(function(fact) {
-                    return fact.Added === true;
-                });
+        var randomIndex = Math.floor(Math.random() * addedFacts.length);
+        var randomFact = addedFacts[randomIndex];
 
-                // Get a random added fact
-                var randomIndex = Math.floor(Math.random() * addedFacts.length);
-                var randomFact = addedFacts[randomIndex];
+        displayFact(randomFact);
+    });
+}
 
-                // Display the random fact
-                displayFact(randomFact);
-            });
-        }
-
-        function displayFact(fact) {
-            var factContainer = $('#fact-container');
-            var factElement = $('<p>').html(
-                '<strong>' + fact.Fact + '</strong><br>' +
-                fact.Description
-            );
-            factContainer.append(factElement);
-        }
     </script>
 </body>
 </html>
