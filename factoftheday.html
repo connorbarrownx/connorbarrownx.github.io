@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
 function loadRandomAddedFact() {
-    $.getJSON('factstest.json', function(data) {
+    $.getJSON('Facts0V2.json', function(data) {
         var addedFacts = data.filter(function(fact) {
             return fact.Added === true;
         });
