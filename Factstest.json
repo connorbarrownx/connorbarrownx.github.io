@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fact of the Day</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Fact of the Day</h1>
+    </header>
+    <div class="container">
+        <p class="reasons">
+            Welcome to the "Fact of the Day" page! Here, you'll find both original and added facts about bread. These facts are entirely fictional and meant for amusement.
+        </p>
+
+        <!-- Random Fact Section -->
+        <p class="random-fact" id="random-fact">
+            <!-- Random fact will be displayed here -->
+        </p>
+
+        <button onclick="generateRandomFact()">Generate Random Fact</button>
+
+        <p class="reasons">
+            Keep in mind that these facts are for entertainment purposes only and may not adhere to any scientific standards. Enjoy the whimsy!
+        </p>
+    </div>
+    <footer>
+        <p>&copy; 2023 Fact of the Day. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to load the JSON file
+        function loadJSON(callback) {
+            $.getJSON('facts.json', function(data) {
+                callback(data);
+            });
+        }
+
+        // Original and Added Facts Array
+        var facts = [];
+
+        // Function to add an additional fact
+        function addFact(fact, description) {
+            facts.push({
+                "Fact": fact,
+                "Description": description
+            });
+        }
+
+        // Function to generate a random fact
+        function generateRandomFact() {
+            // Get a random fact from the combined array of original and added facts
+            var randomFact = facts[Math.floor(Math.random() * facts.length)];
+
+            // Update the content of the random-fact element with the new fact
+            $("#random-fact").text((facts.indexOf(randomFact) + 1) + ". " + randomFact.Fact + "\n" + randomFact.Description);
+        }
+
+        // Load the JSON data and display facts
+        loadJSON(function(data) {
+            facts = data;
+            generateRandomFact(); // Display an initial random fact
+        });
+    </script>
+</body>
+</html>
