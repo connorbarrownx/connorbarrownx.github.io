@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facts from JSON</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .fact {
+            margin: 20px 0;
+        }
+        .fact h2 {
+            color: #333;
+        }
+        .fact p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Facts and Descriptions</h1>
+    <div id="content"></div>
+
+    <script>
+        fetch('Facts0V2.json')
+        .then(response => response.json())
+        .then(data => {
+            var content = document.getElementById('content');
+
+            data.forEach(function(item) {
+                var factDiv = document.createElement('div');
+                factDiv.className = 'fact';
+
+                var factTitle = document.createElement('h2');
+                factTitle.textContent = item.Fact;
+                factDiv.appendChild(factTitle);
+
+                var factDescription = document.createElement('p');
+                factDescription.textContent = item.Description;
+                factDiv.appendChild(factDescription);
+
+                content.appendChild(factDiv);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
